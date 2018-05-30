@@ -1,6 +1,19 @@
 # digitalm8
 
 > Digital8 PTest
+Simple UI using a Postman Collection API with the following endpoints:
+  Login
+  Get all products
+  Get one product
+  Get one bundle
+  Get all categories
+  Get one category
+
+Optimize:
+  Add store to keep track of the auth token instead of fetching it from localstorage
+  before every API requests.
+  Find a use for the Get one category functionality (whoops..)
+
 
 
 ## Build Setup
