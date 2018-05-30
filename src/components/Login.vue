@@ -89,7 +89,7 @@ export default {
   width: 100%;
   height: 100%;
   // background: linear-gradient(70deg, #222 0%, #222 50%, rgba(0,0,0,.2) 50%, rgba(0,0,0,.2) 100%);
-  background: linear-gradient(75deg,  rgba(255, 166, 39, 0.481) 0%, rgba(0,0,0,.2) 45%,#222 45%, #222 100%);
+  background: linear-gradient(75deg,  rgba(221, 125, 0, 0.72) 0%, rgba(0,0,0,.2) 45%,#222 45%, #222 100%);
 }
 
 .title, .title2 {
