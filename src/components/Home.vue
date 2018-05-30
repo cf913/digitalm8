@@ -5,6 +5,7 @@
       <div class="row my-3">
         <div class="col-sm-2 left">
           <b-list-group class="category-list">
+             <b-list-group-item class="description" deactivated>Components</b-list-group-item>
             <b-list-group-item v-for="(category, i) of categories" :key="i" @click="filterCategories(category.name)">
               <p>{{category.name}}</p>
             </b-list-group-item>
@@ -60,6 +61,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -89,5 +91,11 @@ ul {
 
 .list-group-item:hover p {
   color: orange;
+}
+
+.description{
+  background-color: #444 !important;
+  border-bottom: 2px solid #555;
+  cursor: auto;
 }
 </style>

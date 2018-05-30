@@ -32,7 +32,7 @@ export default {
 }
 
 .component-fade-fast-enter-active, .component-fade-fast-leave-active {
-  transition: opacity .2s ease;
+  transition: opacity .5s ease-in-out;
 }
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .5s ease;

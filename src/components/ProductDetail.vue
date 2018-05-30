@@ -1,10 +1,11 @@
 <template>
   <div class="product-detail" v-if="component">
+    <b-button @click="$router.go(-1)" size="sm" variant="outline-secondary" class="float-left">Back</b-button>
     <div class="row">
-      <div class="col-sm-5">
+      <div class="col-md-5">
         <img :src="component.image" alt="Product Image">
       </div>
-      <div class="col-sm-7 description">
+      <div class="col-md-7 description">
         <h2 class="title">{{component.name}}</h2>
         <h3 class="price">${{component.price}}</h3>
 
@@ -56,5 +57,9 @@ export default {
     .price {
       color: red;
     }
+  }
+
+  img {
+    width: 100%;
   }
 </style>
