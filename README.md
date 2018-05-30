@@ -1,7 +1,7 @@
 # digitalm8
 
 > Digital8 PTest
-Simple UI using a Postman Collection API with the following endpoints:
+Simple UI using a Postman Collection API:
   * Login
   * Get all products
   * Get one product
@@ -12,7 +12,7 @@ Simple UI using a Postman Collection API with the following endpoints:
 Optimize:
   * Add store to keep track of the auth token instead of fetching it from localstorage
   before every API requests.
-  * Find a use for the Get one category functionality (whoops..)
+  * Refactor refactor refactor
 
 
 
