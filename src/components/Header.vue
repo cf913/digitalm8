@@ -41,17 +41,23 @@
 <script>
 
 export default {
-  props: ['loggedIn'],
+  computed: {
+    loggedIn () {
+      return this.$store.getters.token
+    }
+  },
   methods: {
     logout () {
-      localStorage.removeItem('AuthToken')
-      this.$router.push('/login')
+      this.$store.dispatch('logout') 
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  .raleway {
+    font-size: 1.5em;
+  }
   .navbar {
     background: rgb(43, 43, 43);
     border-bottom: 4px solid orange;

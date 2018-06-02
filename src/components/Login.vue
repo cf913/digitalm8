@@ -1,19 +1,19 @@
 <template>
   <div class="login">
+
     <div class="slant-overlay"></div>
-    <!-- <div class="title">Digital<span class="orange">m8</span></div> -->
+
     <div class="title2 raleway">
       Digital<span class="orange">m8</span>
       <h4>PC building, reinvented</h4>
     </div>
-    <!-- <div class="title3">Digital<span class="orange">m8</span></div> -->
+
     <div class="login-container">
       <h2><font-awesome-icon icon="lock" /> Login to <span class="orange">My Account</span></h2>
 
       <b-form @submit.prevent="onSubmit" @keyup.enter.prevent="onSubmit">
-        <b-form-group 
-                      label="Email"
-                      label-for="email">
+       
+        <b-form-group label="Email" label-for="email">
           <b-form-input id="email"
                         type="email"
                         v-model="form.email"
@@ -21,9 +21,8 @@
                         placeholder="Enter email">
           </b-form-input>
         </b-form-group>
-        <b-form-group 
-                      label="Password"
-                      label-for="password">
+        
+        <b-form-group label="Password" label-for="password">
           <b-form-input id="password"
                         type="password"
                         v-model="form.password"
@@ -31,11 +30,12 @@
                         placeholder="Enter password">
           </b-form-input>
         </b-form-group>
+
         <b-button block type="submit" variant="primary" class="login-button">Login</b-button>
       </b-form>
-      <!-- <p class="subtext">New Customer? Sign up <a href="#">here</a><br> --> 
       <p class="subtext"><span class="text-secondary">We'll never share your email with anyone else</span></p>
     </div>
+
   </div>
 </template>
 
@@ -53,19 +53,8 @@ export default {
     }
   },
   methods: {
-    validateEmail(email) {
-      return re.test(String(email).toLowerCase());
-    },
     onSubmit() {
-      axios.post('/user/login', qs.stringify(this.form))
-        .then(json => {
-          console.log(json.data.data.token)
-          localStorage.setItem('AuthToken', JSON.stringify(json.data.data.token))
-          this.$router.push('/')
-        })
-        .catch(err => {
-          console.log(err)
-        })
+      this.$store.dispatch('login', qs.stringify(this.form))
     }
   }
 }

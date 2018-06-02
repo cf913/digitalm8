@@ -31,8 +31,12 @@ export default {
   },
   data () {
     return {
-      token: null,
-      categories: []
+      token: null
+    }
+  },
+  computed: {
+    categories () {
+      return this.$store.getters.categories
     }
   },
   methods: {
@@ -41,21 +45,8 @@ export default {
     }
   },
   created () {
-    // Keep token in a Vuex store to save a localStorage read
-    const authToken = JSON.parse(localStorage.getItem('AuthToken'))
-    if (authToken) {
-      this.token = authToken
-    } else {
-      this.$router.push('/login')
-      return
-    }
-    axios.get('/categories', { headers: { 'x-token':this.token }})
-      .then(({data}) => {
-        this.categories = data.data
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.$store.dispatch('tryAutoLogin')
+    this.$store.dispatch('getCategories')
   }
 }
 </script>
