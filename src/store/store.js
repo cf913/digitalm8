@@ -48,7 +48,7 @@ export default new Vuex.Store({
     tryAutoLogin ({commit, dispatch}) {
       const token = JSON.parse(localStorage.getItem('AuthToken'))
       if (!token) {
-        router.push('/')
+        router.push('/login')
       } else {
         commit('saveToken', token) 
       }
@@ -81,6 +81,8 @@ export default new Vuex.Store({
             if (brand === 'Cooler') brand = 'Cooler Master'
             if (!brandList.includes(brand)) brandList.push(brand)
           })
+
+          brandList.sort()
           commit('setBrands', brandList)
         })
         .catch(err => {

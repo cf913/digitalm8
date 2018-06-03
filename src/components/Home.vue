@@ -76,6 +76,7 @@ ul {
 .category-list, .brand-list {
   // border: 2px solid orange;
   border-radius: 5px;
+  text-align: left;
 
   p {
     margin: 0 0 0 -5px;

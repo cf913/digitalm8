@@ -5,10 +5,10 @@
       <h2>My Wishlist</h2>
      
       <div class="title">
-        <p>Components</p>
+        <p>Components: <strong>{{wishlist.components.length}}</strong></p>
       </div> 
 
-      <div class="card-group components">
+      <div class="card-group components" v-if="wishlist.components.length > 0">
         <app-product-item 
           v-for="component of wishlist.components" 
           :key="component.id" 
@@ -17,10 +17,10 @@
       </div>
       
       <div class="title">
-        <p>Bundles</p>
+        <p>Bundles: <strong>{{wishlist.bundles.length}}</strong></p>
       </div>
 
-      <div class="card-group bundles">
+      <div class="card-group bundles" v-if="wishlist.bundles.length > 0">
         <b-card-group deck
                   class="mb-3">
             <b-card 
