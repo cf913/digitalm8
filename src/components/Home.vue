@@ -3,17 +3,16 @@
     <app-header :loggedIn="token"></app-header>
     <div class="container">
       <div class="row my-3">
-        <div class="col-sm-2 left">
+        <div class="col-sm-2">
           <b-list-group class="category-list">
              <b-list-group-item class="description" deactivated>Components</b-list-group-item>
-            <b-list-group-item v-for="(category, i) of categories" :key="i" @click="filterCategories(category.name)">
+            <b-list-group-item :class="{selected: $route.query.category == category.name}" v-for="(category, i) of categories" :key="i" @click="filterCategories(category.name)">
               <p>{{category.name}}</p>
             </b-list-group-item>
           </b-list-group>
-          <br>
           <b-list-group class="brand-list">
              <b-list-group-item class="description" deactivated>Brands</b-list-group-item>
-            <b-list-group-item v-for="(brand, i) of brands" :key="i" @click="filterBrands(brand)">
+            <b-list-group-item :class="{selected: $route.query.brand == brand}" v-for="(brand, i) of brands" :key="i" @click="filterBrands(brand)">
               <p>{{brand}}</p>
             </b-list-group-item>
           </b-list-group>
@@ -75,14 +74,20 @@ ul {
 }
 
 .category-list, .brand-list {
-  border: 2px solid orange;
+  // border: 2px solid orange;
   border-radius: 5px;
+
+  p {
+    margin: 0 0 0 -5px;
+    color: #aaa;
+  }
 }
 
-.category-list p {
-  margin: 0;
-  text-transform: uppercase;
-  color: #ddd;
+.category-list {
+  margin-bottom: 20px;
+  p {
+    text-transform: uppercase;
+  }
 }
 
 .left {
@@ -93,23 +98,42 @@ ul {
   background-color: rgba(0,0,0,.2);
   cursor: pointer;
   font-weight: bold;
+  border-left: 5px solid transparent;
+  transition: .1s;
 }
 
 .list-group-item:hover {
-  background: orange;
+  border-left: 5px solid orange;  
   
   p {
-    color: #000;
+    color: #fff;
   }
 }
 
+.list-group-item:first-child:hover {
+  border-left-color: transparent;
+}
+
 .list-group-item:active {
-  background: rgba(255, 166, 0, 0.433);
+  background: #555;
+}
+
+.selected {
+  border-left: 5px solid orange;  
+  
+  p {
+    color: orange;
+  }
 }
 
 .description{
   background-color: #444 !important;
-  border-bottom: 2px solid #555;
+  border-left: none;
+  border-bottom: 2px solid #666;
   cursor: auto;
+}
+
+.description:hover {
+  border-left: none;
 }
 </style>

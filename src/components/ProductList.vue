@@ -47,6 +47,7 @@ export default {
           })
         }
         else this.components = data.data
+        
       })
       .catch(err => {
         console.log(err)

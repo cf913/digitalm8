@@ -22,7 +22,7 @@
         </b-navbar-nav> -->
 
         <b-navbar-nav class="ml-auto right">
-            <b-nav-item href="#" id="wishlist">
+            <b-nav-item to="/wishlist" id="wishlist">
               <font-awesome-icon icon="heart" size="lg"/>
             </b-nav-item>
             <b-nav-item href="#" disabled>

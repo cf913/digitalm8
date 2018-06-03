@@ -6,6 +6,7 @@ import ProductList from '@/components/ProductList'
 import ProductDetail from '@/components/ProductDetail'
 import Bundles from '@/components/Bundles'
 import BundleDetail from '@/components/BundleDetail'
+import Wishlist from '@/components/Wishlist'
 
 Vue.use(Router)
 
@@ -22,19 +23,24 @@ export default new Router({
           component: ProductList
         },
         {
-          path: '/product/:id',
+          path: 'product/:id',
           name: 'ProduceDetail',
           component: ProductDetail
         },
         {
-          path: '/bundles/',
+          path: 'bundles/',
           name: 'Bundles',
           component: Bundles
         },
         {
-          path: '/bundles/:id',
+          path: 'bundles/:id',
           name: 'BundlesDetail',
           component: BundleDetail
+        },
+        {
+          path: 'wishlist',
+          name: 'Wishlist',
+          component: Wishlist
         }
       ]
     },

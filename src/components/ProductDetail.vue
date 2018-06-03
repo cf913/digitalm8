@@ -10,7 +10,12 @@
         <h3 class="price">${{component.price}}</h3>
 
         <p>{{component.description}}</p>
-          <b-button variant="outline-danger" size="lg" class="card-link add-to-wishlist"><font-awesome-icon icon="heart" /></b-button>
+          <b-button variant="outline-danger" 
+                    size="lg" 
+                    class="card-link add-to-wishlist"
+                    @click="addToWishlist()">
+            <font-awesome-icon icon="heart" />
+          </b-button>
           <b-button class="card-link add-to-cart" size="lg"><font-awesome-icon icon="cart-plus" /> Cart</b-button>
       </div>
     </div>
@@ -45,6 +50,11 @@ export default {
   computed: {
     token () {
       return this.$store.getters.token
+    }
+  },
+  methods: {
+    addToWishlist() {
+      this.$store.dispatch('addToWishlist', this.component)
     }
   },
   created () {

@@ -34,7 +34,13 @@
         </div>
 
         <div class="card-body">
-          <b-button v-if="!bundle.bundleProducts.length == 0" variant="outline-danger" class="card-link add-to-wishlist"><font-awesome-icon icon="heart" /></b-button>
+          <b-button 
+            v-if="!bundle.bundleProducts.length == 0" 
+            variant="outline-danger" 
+            class="card-link add-to-wishlist"
+            @click="addToWishlist(bundle)">
+              <font-awesome-icon icon="heart" />
+          </b-button>
           <b-button v-if="!bundle.bundleProducts.length == 0" class="card-link add-to-cart"><font-awesome-icon icon="cart-plus" /> Cart</b-button>
         </div>
       </div>
@@ -54,6 +60,11 @@ export default {
   computed: {
     token () {
       return this.$store.getters.token
+    }
+  },
+  methods: {
+    addToWishlist(bundle) {
+      this.$store.dispatch('addToWishlist', bundle)
     }
   },
   created () {

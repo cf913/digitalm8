@@ -10,7 +10,10 @@ export default new Vuex.Store({
   state: {
     token: null,
     cart: [],
-    wishlist: [],
+    wishlist: {
+      components: [],
+      bundles: []
+    },
     categories: [],
     brands: []
   },
@@ -23,11 +26,14 @@ export default new Vuex.Store({
     },
     setBrands (state, brands) {
       state.brands = brands
+    },
+    setWishlist (state, wishlist) {
+      state.wishlist = wishlist
     }
 
   },
   actions: {
-    // AUTH
+    ////////// AUTH
     login ({commit}, form) {
       axios.post('/user/login', form)
         .then(json => {
@@ -53,7 +59,7 @@ export default new Vuex.Store({
       router.push('/login')
     },// END AUTH
 
-    // CATEGORIES
+    ////////// CATEGORIES
     getCategories({state, commit}) {
       axios.get('/categories', { headers: { 'x-token': state.token }})
       .then(({data}) => {
@@ -63,7 +69,7 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    // BRANDS
+    ////////// BRANDS
     getBrands({state, commit}) {
       axios.get('/products', { headers: { 'x-token': state.token }})
         .then(({data}) => {
@@ -80,6 +86,19 @@ export default new Vuex.Store({
         .catch(err => {
           console.log(err)
         })
+    },
+    ////////// WISHLIST 
+    addToWishlist({state, commit}, product) {
+      const wishlist = state.wishlist
+      console.log(wishlist)
+      if (wishlist.components.filter(e => e.id === product.id).length > 0 
+            || wishlist.bundles.filter(e => e.id === product.id).lenght > 0) return
+      if (product.basePrice) {
+        wishlist.bundles.push(product)
+      }
+      else wishlist.components.push(product)
+      commit('setWishlist', wishlist)
+
     }
   },
   getters: {
@@ -91,6 +110,9 @@ export default new Vuex.Store({
     },
     brands (state) {
       return state.brands
+    },
+    wishlist (state) {
+      return state.wishlist
     }
   },
   modules: {

@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
   .product_item {
-    width: 30%;
+    width: 33.33%;
   }
   .item {
     color: white;
