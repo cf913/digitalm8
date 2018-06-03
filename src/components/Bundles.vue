@@ -1,5 +1,6 @@
 <template>
   <div class="bundles">
+    <b-button @click="$router.go(-1)" size="sm" variant="outline-secondary" class="float-left"><font-awesome-icon icon="arrow-left" /> Back</b-button>
     <div class="card-group">
       <div class="card item" v-for="bundle of bundles" :key="bundle.id">
         <div class="card-body">
@@ -47,20 +48,16 @@ import axios from '../axios/axios'
 export default {
   data () {
     return {
-      token: null,
       bundles: [],
     }
   },
-  created () {
-    // Keep token in a Vuex store to save a localStorage read
-    const authToken = JSON.parse(localStorage.getItem('AuthToken'))
-    if (authToken) {
-      this.token = authToken
-    } else {
-      this.$router.push('/login')
-      return
+  computed: {
+    token () {
+      return this.$store.getters.token
     }
-    axios.get('/bundles', { headers: { 'x-token':this.token }})
+  },
+  created () {
+    axios.get('/bundles', { headers: { 'x-token': this.token }})
       .then(({data}) => {
         this.bundles = data.data
       })
@@ -72,6 +69,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+  .card-group {
+    width: 100%;
+  }
+
   .item {
     color: white;
     border: none;
@@ -120,5 +122,9 @@ export default {
 
   .component a{
     color: #ddd;
+  }
+
+  .float-left {
+    margin-bottom: 10px;
   }
 </style>

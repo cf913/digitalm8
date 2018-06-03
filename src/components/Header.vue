@@ -22,7 +22,7 @@
         </b-navbar-nav> -->
 
         <b-navbar-nav class="ml-auto right">
-            <b-nav-item href="#">
+            <b-nav-item href="#" id="wishlist">
               <font-awesome-icon icon="heart" size="lg"/>
             </b-nav-item>
             <b-nav-item href="#" disabled>
@@ -70,6 +70,10 @@ export default {
 
   .right li {
     margin-left: 20px;
+  }
+
+  li.nav-item#wishlist a.nav-link:hover {
+    color: red !important;
   }
 </style>
 

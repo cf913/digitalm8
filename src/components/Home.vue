@@ -10,6 +10,14 @@
               <p>{{category.name}}</p>
             </b-list-group-item>
           </b-list-group>
+          <br>
+          <b-list-group class="brand-list">
+             <b-list-group-item class="description" deactivated>Brands</b-list-group-item>
+            <b-list-group-item v-for="(brand, i) of brands" :key="i" @click="filterBrands(brand)">
+              <p>{{brand}}</p>
+            </b-list-group-item>
+          </b-list-group>
+
         </div>
         <div class="col-sm-10">
           <transition name="component-fade-fast" mode="out-in">
@@ -37,16 +45,23 @@ export default {
   computed: {
     categories () {
       return this.$store.getters.categories
+    },
+    brands () {
+      return this.$store.getters.brands
     }
   },
   methods: {
     filterCategories (category) {
       this.$router.push('/?category=' + category)
+    },
+    filterBrands (brand) {
+      this.$router.push('/?brand=' + brand)
     }
   },
   created () {
     this.$store.dispatch('tryAutoLogin')
     this.$store.dispatch('getCategories')
+    this.$store.dispatch('getBrands')
   }
 }
 </script>
@@ -59,7 +74,7 @@ ul {
   margin: 0;
 }
 
-.category-list {
+.category-list, .brand-list {
   border: 2px solid orange;
   border-radius: 5px;
 }
@@ -80,8 +95,16 @@ ul {
   font-weight: bold;
 }
 
-.list-group-item:hover p {
-  color: orange;
+.list-group-item:hover {
+  background: orange;
+  
+  p {
+    color: #000;
+  }
+}
+
+.list-group-item:active {
+  background: rgba(255, 166, 0, 0.433);
 }
 
 .description{

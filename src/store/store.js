@@ -11,7 +11,8 @@ export default new Vuex.Store({
     token: null,
     cart: [],
     wishlist: [],
-    categories: []
+    categories: [],
+    brands: []
   },
   mutations: {
     saveToken (state, token) {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     setCategories (state, categories) {
       state.categories = categories
+    },
+    setBrands (state, brands) {
+      state.brands = brands
     }
 
   },
@@ -58,6 +62,24 @@ export default new Vuex.Store({
       .catch(err => {
         console.log(err)
       })
+    },
+    // BRANDS
+    getBrands({state, commit}) {
+      axios.get('/products', { headers: { 'x-token': state.token }})
+        .then(({data}) => {
+          let brandList = []
+          // Get brand from product.name
+          data.data.map(elem => {
+            let brand = elem.name.slice(0, elem.name.indexOf(' '))
+            // Cooler Master is currently the only two words brand
+            if (brand === 'Cooler') brand = 'Cooler Master'
+            if (!brandList.includes(brand)) brandList.push(brand)
+          })
+          commit('setBrands', brandList)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   getters: {
@@ -66,6 +88,9 @@ export default new Vuex.Store({
     },
     categories (state) {
       return state.categories
+    },
+    brands (state) {
+      return state.brands
     }
   },
   modules: {

@@ -17,8 +17,12 @@ export default {
   },
   data () {
     return {
-      token: null,
       components: [],
+    }
+  },
+  computed: {
+    token () {
+      return this.$store.getters.token
     }
   },
   watch: {
@@ -28,9 +32,20 @@ export default {
   },
   methods: {
     fetch () {
-      axios.get('/products', { headers: { 'x-token':this.token }})
+      axios.get('/products', { headers: { 'x-token': this.token }})
       .then(({data}) => {
+
+        // Filter by categories
         if (this.$route.query.category) this.components = data.data.filter(elem => (elem.category.name === this.$route.query.category))
+        // Filter by brands
+        else if (this.$route.query.brand) {
+          this.components = data.data.filter(elem => {
+            if (this.$route.query.brand === 'Cooler Master') {
+              return elem.name.slice(0, elem.name.indexOf(' ')) === 'Cooler'
+            }
+            return elem.name.slice(0, elem.name.indexOf(' ')) === this.$route.query.brand
+          })
+        }
         else this.components = data.data
       })
       .catch(err => {
@@ -39,14 +54,6 @@ export default {
     }
   },
   created () {
-    // Keep token in a Vuex store to save a localStorage read
-    const authToken = JSON.parse(localStorage.getItem('AuthToken'))
-    if (authToken) {
-      this.token = authToken
-    } else {
-      this.$router.push('/login')
-      return
-    }
     this.fetch()
   }
 }

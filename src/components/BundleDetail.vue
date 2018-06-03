@@ -1,7 +1,7 @@
 <template>
   <div class="bundle-detail" v-if="bundle">
     
-    <b-button @click="$router.go(-1)" size="sm" variant="outline-secondary" class="float-left">Back</b-button>
+    <b-button @click="$router.go(-1)" size="sm" variant="outline-secondary" class="float-left"><font-awesome-icon icon="arrow-left" /> Back</b-button>
     
     <div class="card item">
       <!-- BUNDLE HEAD -->
