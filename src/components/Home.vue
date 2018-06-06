@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <app-header :loggedIn="token"></app-header>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row my-3">
-        <div class="col-sm-2">
+        <div class="col-sm-4 col-md-3 col-lg-2">
           <b-list-group class="category-list">
              <b-list-group-item class="description" deactivated>Components</b-list-group-item>
             <b-list-group-item :class="{selected: $route.query.category == category.name}" v-for="(category, i) of categories" :key="i" @click="filterCategories(category.name)">
@@ -18,7 +18,7 @@
           </b-list-group>
 
         </div>
-        <div class="col-sm-10">
+        <div class="col-sm-8 col-md-9 col-lg-10">
           <transition name="component-fade-fast" mode="out-in">
             <router-view></router-view>
           </transition>
@@ -66,6 +66,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container-fluid {
+  max-width: 1200px;
+}
 
 ul {
   list-style-type: none;
