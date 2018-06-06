@@ -21,18 +21,16 @@
       </div>
 
       <div class="card-group bundles" v-if="wishlist.bundles.length > 0">
-        <b-card-group deck
-                  class="mb-3">
-            <b-card 
-                v-for="bundle of wishlist.bundles" 
-                :key="bundle.id"
-                bg-variant="primary"
-                text-variant="white"
-                header="bundle.name"
-                class="text-center">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </b-card>
-        </b-card-group>
+        <div class="card item" v-for="bundle of wishlist.bundles" :key="bundle.id">
+          <div class="card-body">
+            <h5 class="card-title">
+              <b-link :to="`/bundles/${bundle.id}`">{{bundle.name}}</b-link>
+            </h5>
+          </div>
+          <div class="card-text">
+            <p class="rm_wishlist" @click="removeItemHandler(bundle.id)">Remove item</p>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -50,11 +48,25 @@ export default {
     wishlist () {
       return this.$store.getters.wishlist
     }
+  },
+  methods: {
+    removeItemHandler(id) {
+      this.$store.dispatch('removeItemWishlist', {type: 'bundles', id})
+    } 
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+   .item {
+    color: white;
+    border: none;
+    width: 100%;
+    background: transparent;
+    border-radius: 5px;
+    border: 2px solid #444;
+  }
 
   .wishlist {
     clear: both;
@@ -76,5 +88,20 @@ export default {
       text-align: left;
       color: orange;
     }
+  }
+
+  a {
+    color: #ddd;
+  }
+
+  .rm_wishlist {
+    margin: 0;
+    color: #555;
+    text-decoration: underline;
+  }
+
+  .rm_wishlist:hover {
+    color: #ddd;
+    cursor: pointer;
   }
 </style>

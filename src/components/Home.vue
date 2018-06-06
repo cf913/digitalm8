@@ -100,7 +100,7 @@ ul {
   cursor: pointer;
   font-weight: bold;
   border-left: 5px solid transparent;
-  transition: .1s;
+  transition: .2s;
 }
 
 .list-group-item:hover {

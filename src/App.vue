@@ -24,7 +24,7 @@ export default {
   color: #ddd;
   height: 100%;
   min-height: 100vh;
-  background: #222;
+  background: #1a1a1a;
 }
 
 .orange {
@@ -32,7 +32,7 @@ export default {
 }
 
 .component-fade-fast-enter-active, .component-fade-fast-leave-active {
-  transition: opacity .15s ease-in-out;
+  transition: opacity .1s ease-in-out;
 }
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .5s ease;

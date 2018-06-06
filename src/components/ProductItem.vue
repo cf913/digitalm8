@@ -23,7 +23,7 @@ export default {
   props: ['component', 'wishlist'],
   methods: {
     removeItemHandler(id) {
-      this.$store.dispatch('removeItemWishlist', id)
+      this.$store.dispatch('removeItemWishlist', {type: 'components', id})
     }
   }
 }
