@@ -12,7 +12,7 @@
         <app-product-item 
           v-for="component of wishlist.components" 
           :key="component.id" 
-          :component="component">
+          :component="component" :wishlist="true">
         </app-product-item>
       </div>
       

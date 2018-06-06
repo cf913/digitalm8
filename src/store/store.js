@@ -99,8 +99,14 @@ export default new Vuex.Store({
         wishlist.bundles.push(product)
       }
       else wishlist.components.push(product)
-      commit('setWishlist', wishlist)
-
+        commit('setWishlist', wishlist)
+    },
+    removeItemWishlist({state, commit}, id) {
+      const updated_wishlist = {
+        components: state.wishlist.components.filter(elem => id !== elem.id),
+        bundles: state.wishlist.bundles
+      }
+      commit('setWishlist', updated_wishlist)
     }
   },
   getters: {

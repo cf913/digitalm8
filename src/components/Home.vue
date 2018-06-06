@@ -130,7 +130,8 @@ ul {
 .description{
   background-color: #444 !important;
   border-left: none;
-  border-bottom: 2px solid #666;
+  border-bottom: 2px solid orange;
+  color: orange;
   cursor: auto;
 }
 

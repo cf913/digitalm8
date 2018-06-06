@@ -12,6 +12,7 @@
         <span class="sales">${{Math.round(component.price*1.2)}}</span> ${{component.price}}
       </p>
         <b-button class="add-to-cart"><font-awesome-icon icon="shopping-cart" /> Add to cart</b-button>
+        <p v-if="wishlist" class="rm_wishlist" @click="removeItemHandler(component.id)" >Remove item</p>
       </div>
     </div>
   </div>  
@@ -19,7 +20,12 @@
 
 <script>
 export default {
-  props: ['component']
+  props: ['component', 'wishlist'],
+  methods: {
+    removeItemHandler(id) {
+      this.$store.dispatch('removeItemWishlist', id)
+    }
+  }
 }
 </script>
 
@@ -67,5 +73,16 @@ export default {
     left: -20px;
     color: #777;
     text-decoration: line-through;
+  }
+
+  .rm_wishlist {
+    margin: 15px 0 0;
+    color: #555;
+    text-decoration: underline;
+  }
+
+  .rm_wishlist:hover {
+    color: #ddd;
+    cursor: pointer;
   }
 </style>
